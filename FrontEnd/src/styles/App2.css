@@ -1,0 +1,134 @@
+.input-section {
+  margin: 20px;
+}
+
+input {
+  margin: 5px;
+  padding: 10px;
+  font-size: 16px;
+  width: 200px;
+}
+
+button {
+  margin: 5px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.chart-section {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  flex-wrap: wrap; /* 차트가 많아질 경우 세로로 배치되도록 설정 */
+}
+
+p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.winrate-text,
+.average-text,
+.era-text {
+  margin-top: 10px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.loading-text,
+.error-text {
+  color: red;
+  font-size: 18px;
+}
+
+.chart-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.chart {
+  width: 45%;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+/* 전체 레이아웃 */
+.App {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+/* 팀 정보 (팀 이름과 순위) */
+.team-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.team {
+  width: 150px; /* 팀 정보 섹션의 너비 */
+}
+
+.vs {
+  font-size: 2rem; /* VS 텍스트 크기 */
+  margin: 0 20px;
+}
+
+/* 통계 데이터 스타일 */
+.stats {
+  width: 70%; /* 통계 데이터 섹션 너비 */
+  margin: 0 auto; /* 가운데 정렬 */
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.label {
+  width: 50px; /* 라벨 너비 */
+  text-align: left; /* 왼쪽 정렬 */
+}
+
+/* 막대 그래프 컨테이너 */
+.bar-container {
+  display: flex;
+  justify-content: space-between;
+  width: 90%; /* 막대 그래프 섹션의 너비 */
+  position: relative;
+}
+
+/* 막대 스타일 */
+.bar {
+  height: 20px;
+  display: inline-block;
+}
+
+/* 원정팀 막대 스타일 */
+.away-bar {
+  background-color: red; /* 빨간색 */
+  border-radius: 10px 0 0 10px; /* 왼쪽 끝 둥글게 */
+}
+
+/* 홈팀 막대 스타일 */
+.home-bar {
+  background-color: gray; /* 회색 */
+  border-radius: 0 10px 10px 0; /* 오른쪽 끝 둥글게 */
+}
+
+/* 상대 전적 스타일 */
+.overall-result {
+  margin-top: 20px; /* 위쪽 여백 */
+}

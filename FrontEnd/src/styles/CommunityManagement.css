@@ -1,0 +1,48 @@
+.community-content {
+  cursor: pointer;
+  text-align: left;
+  display: block;
+}
+
+.post-header {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #222222;
+  text-align: left;
+  margin: 10px 0 20px 0;
+}
+
+.post-meta-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #8e8e8e;
+  padding: 3px 3px;
+}
+
+.post-info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.post-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.post-content {
+  margin: 40px 30px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  min-height: 200px;
+}
+
+.community-delete {
+  cursor: pointer;
+}
+
+.community-delete:hover {
+  color: #d71e17;
+}

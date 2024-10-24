@@ -1,0 +1,52 @@
+.personal-logo-title {
+  display: flex;
+  align-items: center;
+  margin-right: 3.1rem;
+  margin-bottom: 2vh;
+}
+
+.personal-logo {
+  width: 8vw;
+  height: 3vh;
+  min-height: 20px;
+  min-width: 100px;
+  margin-bottom: 25px;
+}
+
+.option-point {
+  color: #de1717;
+}
+
+.option-point-select {
+  color: #878787;
+}
+.agree-checkbox {
+  margin-bottom: 2vh;
+  font-size: 1rem;
+  color: #222222;
+  font-weight: bold;
+  text-align: left;
+}
+
+.agree-box-container {
+  margin-bottom: 4vh;
+}
+
+.agree-box-all {
+  width: 21vw;
+  min-width: 360px;
+  color: #878787;
+  text-align: left;
+  font-size: 0.8rem;
+}
+.agree-box {
+  border: none;
+  width: 21vw;
+  min-width: 360px;
+  height: 160px;
+  overflow: auto;
+  color: #878787;
+  text-align: left;
+  font-size: 0.8rem;
+  line-height: 1.3rem;
+}

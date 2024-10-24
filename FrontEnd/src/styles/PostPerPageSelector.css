@@ -1,0 +1,14 @@
+.post-per-page-selector {
+  font-family: "NanumSquareRound", sans-serif;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.post-per-page-selector select {
+  padding: 3px 6px;
+  font-size: 0.85rem;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}

@@ -1,0 +1,54 @@
+/* @font-face 선언 */
+@font-face {
+  font-family: "GongGothicMedium";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.write-button:hover {
+  background-color: #f0f0f0;
+}
+
+/* 글쓰기 버튼의 아이콘 스타일 */
+.button-icon {
+  width: 1vw;
+  margin-right: 8px; /* 아이콘과 텍스트 사이의 간격 */
+}
+
+/* 카테고리 선택 버튼 중앙 정렬 */
+.header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 중앙 정렬 */
+}
+
+/* 카테고리 버튼 */
+.category-selector {
+  display: flex;
+  justify-content: center; /* 버튼을 가운데 정렬 */
+  margin-bottom: 20px;
+}
+
+/* 글쓰기 버튼을 테이블 오른쪽 아래로 이동 */
+.write-button-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* 페이지네이션 중앙 정렬 */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* 검색 바 중앙 정렬 */
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}

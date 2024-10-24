@@ -1,0 +1,86 @@
+.header-container {
+  position: absolute; /* 절대 위치 설정 */
+  top: 0; /* 상단에 위치 */
+  left: 0; /* 왼쪽에 위치 */
+  right: 0; /* 오른쪽에 위치 */
+  z-index: 10; /* 캐러셀보다 위에 위치 */
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 20px;
+  width: 86.71%;
+  height: 7.5%; /* 헤더 높이 */
+  background-color: white; /* 배경색 흰색 */
+  border-radius: 60px; /* 라운딩 */
+  margin: 30px auto;
+}
+
+.navbar:hover {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.nav {
+  flex-grow: 1; /* 가능한 공간을 차지 */
+}
+
+.nav-item {
+  margin: 0 15px; /* Nav 아이템 간격 조정 */
+}
+
+/* 네비바 내 링크 스타일 */
+.nav-links {
+  display: flex;
+  flex-grow: 2; /* 가능한 공간을 차지 */
+  justify-content: center; /* 중앙 정렬 */
+}
+
+.nav-links .nav-link {
+  text-align: center;
+  color: #2b2a2a; /* 기본 글씨 색상 - 검은색 */
+  transition: color 0.3s; /* 색상 변경 시 부드러운 전환 효과 */
+  font-size: 18px;
+  font-family: "GongGothicMedium", sans-serif;
+  text-decoration: none;
+}
+
+.nav-links .nav-link:hover {
+  color: #d71e17; /* 마우스 오버 시 빨간색 */
+}
+
+.nav-links .nav-link.active-link {
+  color: #d71e17; /* 선택된 페이지는 빨간색 유지 */
+}
+
+.logo,
+.login-button {
+  flex: 0 0 auto; /* 고정된 크기로 설정 */
+}
+
+img {
+  max-width: 100%; /* 이미지가 컨테이너의 최대 너비를 넘지 않도록 설정 */
+}
+
+.logo img {
+  width: 174px; /* 로고의 너비 고정 */
+  height: 27px; /* 로고의 높이 고정 */
+  /* padding-left: 35px; */
+  margin-left: 35px;
+}
+
+.login-button svg {
+  width: 45px; /* 로그인 버튼의 너비 고정 */
+  height: 45px; /* 로그인 버튼의 높이 고정 */
+  margin-right: 35px;
+  color: #d71e17;
+}
+
+/* 눈누 - 이사만루 폰트 */
+@font-face {
+  font-family: "GongGothicMedium";
+  src: url("../assets/fonts/esamanru\ Medium.ttf") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}

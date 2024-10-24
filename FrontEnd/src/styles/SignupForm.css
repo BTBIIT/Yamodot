@@ -1,0 +1,18 @@
+.signup-form {
+  min-width: 327px;
+  min-height: 59px;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  padding-left: 20px;
+}
+
+.success-message {
+  color: green;
+  font-size: 12px;
+  margin-top: 5px;
+  padding-left: 20px;
+}

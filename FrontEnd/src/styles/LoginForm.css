@@ -1,0 +1,53 @@
+.input-custom {
+  margin-bottom: 1vh;
+  text-align: center;
+}
+
+.loginform-button {
+  margin-bottom: 2vh;
+}
+
+.remember-find {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3.5rem;
+  font-size: 0.9rem;
+  color: #878787;
+}
+
+.login-links ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+}
+
+.login-links ul li {
+  margin-right: 0.3rem;
+}
+
+.login-links ul li a {
+  text-decoration: none;
+  color: #878787;
+}
+
+.btn-login img {
+  width: 2.6vw;
+  height: 4.8vh;
+  min-width: 47px;
+  min-height: 47px;
+  cursor: pointer;
+  margin-top: 6vh;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.success-message {
+  color: green;
+  font-size: 12px;
+  margin-top: 5px;
+}

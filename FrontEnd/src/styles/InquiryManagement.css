@@ -1,0 +1,84 @@
+.inquiry-questionTitle {
+  cursor: pointer;
+  text-align: left;
+  display: block;
+}
+
+.inquiry-header {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #222222;
+  text-align: left;
+  margin: 10px 0 20px 0;
+}
+
+/* 작성일, 조회수를 한 줄에 배치 */
+.inquiry-meta-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #8e8e8e;
+  padding: 3px 3px;
+}
+
+.inquiry-info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.inquiry-content {
+  margin: 40px 30px;
+  white-space: pre-wrap; /* 줄바꿈을 유지하며 글 표시 */
+  word-wrap: break-word; /* 긴 단어는 자동으로 줄 바꿈 */
+  min-height: 200px;
+}
+
+/* 내용 제목 스타일 */
+h4 {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #222222;
+  margin: 0 0 20px 5px;
+  text-align: left;
+}
+
+/* 이미지 및 파일 */
+.inquiry-image {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.inquiry-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+/* 관리자 답변 섹션 */
+.inquiry-textarea {
+  width: 95%;
+  min-height: 20px;
+  border: none;
+  font-size: 0.8rem;
+  color: #222222;
+  margin: 0;
+  resize: none;
+}
+
+textarea::placeholder {
+  color: #ccc;
+}
+
+.inquiry-delete {
+  cursor: pointer;
+}
+
+.inquiry-delete:hover {
+  color: #d71e17;
+}
+
+.inquiry-searchbar {
+  margin: 1% 0 0 0;
+}

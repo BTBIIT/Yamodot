@@ -1,0 +1,15 @@
+.pwinquiry-button {
+  margin-top: 4vh !important;
+  margin-bottom: 3vh;
+}
+
+.pwinquiry-id {
+  color: #878787;
+  font-size: 0.95rem;
+}
+
+.pwinquiry-id a {
+  margin-left: 10px;
+  text-decoration: none;
+  color: #d71e17;
+}

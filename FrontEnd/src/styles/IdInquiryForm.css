@@ -1,0 +1,28 @@
+.idinquiry-error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.idinquiry-button {
+  margin-top: 4vh !important;
+}
+
+.idinquiry-pw {
+  margin-top: 3vh;
+  font-size: 0.95em;
+}
+
+.idinquiry-pw ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+.idinquiry-pw ul li {
+  color: #878787;
+}
+
+.idinquiry-pw ul li a {
+  text-decoration: none;
+  color: #878787;
+}

@@ -1,0 +1,19 @@
+.category-selector {
+  display: flex;
+  flex-wrap: wrap; /* 줄 바꿈 허용 */
+  justify-content: center;
+  gap: 10px; /* 버튼 사이의 간격 */
+  margin-bottom: 20px;
+  width: 40%; /* 전체 카테고리 박스의 고정 너비 */
+  min-width: 458px;
+}
+
+.team-btn.active {
+  transform: scale(1.1);
+  border: 1px solid red; /* 선택된 구단에 대한 테두리 강조 */
+}
+
+.team-logo {
+  margin-right: 3px; /*  로고와 이름 사이 간격 */
+  width: 20px;
+}

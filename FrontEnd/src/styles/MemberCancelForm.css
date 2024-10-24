@@ -1,0 +1,13 @@
+.cancel-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 120px;
+}
+
+h1 {
+  font-size: 60px;
+  font-weight: 800;
+  color: #222222;
+  line-height: 90px;
+}

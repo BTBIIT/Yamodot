@@ -1,0 +1,40 @@
+.reply-content {
+  display: flex;
+  flex-direction: column; /* 수직 정렬 */
+  align-items: flex-start; /* 댓글 내용과 버튼들을 수직으로 정렬 */
+  margin-top: 10px;
+}
+
+.reply-actions {
+  clear: both;
+  margin-top: 20px;
+  margin-left: 500px;
+}
+
+/* 수정 및 삭제 버튼 */
+.reply-actions {
+  margin-top: -20px;
+  display: flex;
+  align-items: flex-end;
+  margin-left: auto;
+}
+
+/* 답글 닉네임 */
+.reply-nickname {
+  font-size: 0.8rem;
+  margin-bottom: 6px; /* 닉네임과 댓글 간의 간격 */
+  text-align: left;
+}
+
+/* 답글 내용 */
+.reply-text {
+  margin-bottom: 0px;
+  font-size: 0.9rem; /* 댓글 크기 조정 */
+  line-height: 1.4; /* 줄 간격 조정 */
+  text-align: left;
+}
+
+.reply-date {
+  color: #b8b8b8;
+  font-size: 0.875em;
+}

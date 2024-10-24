@@ -1,0 +1,198 @@
+/* InquiryEdit 전용 폼 스타일 */
+.inquiry-edit .post-form {
+  width: 100%;
+}
+
+.file-file {
+  display: flex;
+  flex-direction: row; /* 세로 정렬 */
+  align-items: center; /* 왼쪽 정렬 */
+  gap: 15px;
+  font-size: 0.9rem;
+  color: #d2d2d2;
+}
+
+.file-file p {
+  margin: 0;
+}
+
+.from-file {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 각 폼 그룹의 정렬 및 스타일 */
+.inquiry-edit .form-group {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 10px;
+}
+/* ==========================10-17================================== */
+
+/* 기존 파일 선택 버튼 숨기기 */
+.form-control-file {
+  display: none; /* 기본 파일 선택 버튼 숨기기 */
+}
+
+/* 기본 파일 선택 스타일을 변경 */
+.custom-file-upload {
+  width: 130px !important;
+  text-align: center !important;
+  height: 30px;
+  background: #fff;
+  border: 1px solid #d2d2d2 !important;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.custom-file-upload:hover {
+  background: #d2d2d2 !important;
+  color: black;
+}
+
+/* 레이블 스타일 width 80으로 먹이니 공개여부 비번 독약먹음 */
+.inquiry-edit .form-group label {
+  font-weight: bold;
+  width: 70px;
+  font-size: 1rem;
+  text-align: left;
+  gap: 10px;
+}
+
+.public-label {
+  width: 120px !important;
+  display: inline-block !important;
+}
+
+.password-label {
+  width: 120px !important;
+  display: inline-block !important;
+}
+/* ============================================================== */
+
+.inquiry-edit .form-control {
+  flex: 1;
+  padding: 1px;
+  border: none;
+  font-size: 1rem;
+}
+
+/* 글자 수 카운터 */
+.inquiry-edit .char-counter {
+  text-align: right;
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+/* 10-17 빨갱이 */
+.inquiry-edit input:focus {
+  outline: none; /* 기본 브라우저 스타일 제거 */
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.5); /* 원하는 스타일 추가 */
+  border-color: #d71e17; /* 경계선을 빨간색으로 변경 */
+}
+
+/* 토글 스위치에만 적용되는 레이블 */
+.inquiry-edit .form-group .custom-toggle-label {
+  width: 150px; /* 토글에 맞는 크기로 자동 조절 */
+  margin-left: 0;
+}
+
+/* 공개 여부 토글 버튼 스타일 */
+/* InquiryForm.js에서 사용한 공개 여부 토글 버튼 스타일을 InquiryEdit.css에 복사 */
+.inquiry-edit .custom-toggle {
+  position: relative;
+  display: inline-block;
+  width: 120px;
+  height: 45px;
+  margin-top: 8px;
+}
+
+.inquiry-edit .custom-toggle-input {
+  display: none;
+}
+
+.inquiry-edit .custom-toggle-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: -6px;
+  right: 30px;
+  background-color: #ffc9c7;
+  border-radius: 34px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: 25px;
+  position: relative;
+  margin-left: 30px;
+}
+
+.inquiry-edit .custom-toggle-input:checked + .custom-toggle-label {
+  background-color: #d2d2d2;
+}
+
+.inquiry-edit .custom-toggle-switch {
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  transform: translateY(-50%);
+  width: 43px;
+  height: 43px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: left 0.3s ease;
+}
+
+.inquiry-edit
+  .custom-toggle-input:checked
+  + .custom-toggle-label
+  .custom-toggle-switch {
+  left: 103px;
+}
+
+.inquiry-edit .toggle-text {
+  font-family: "NanumSquareRound", sans-serif;
+  font-size: 14px;
+  position: absolute;
+  transition: all 0.3s ease;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.inquiry-edit .toggle-text-left {
+  left: 15px;
+}
+
+.inquiry-edit .toggle-text-right {
+  right: 15px;
+}
+
+.inquiry-edit
+  .custom-toggle-input:not(:checked)
+  + .custom-toggle-label
+  .toggle-text-left {
+  display: none;
+}
+
+.inquiry-edit
+  .custom-toggle-input:checked
+  + .custom-toggle-label
+  .toggle-text-left {
+  display: block;
+}
+
+.inquiry-edit
+  .custom-toggle-input:not(:checked)
+  + .custom-toggle-label
+  .toggle-text-right {
+  display: block;
+}
+
+.inquiry-edit
+  .custom-toggle-input:checked
+  + .custom-toggle-label
+  .toggle-text-right {
+  display: none;
+}

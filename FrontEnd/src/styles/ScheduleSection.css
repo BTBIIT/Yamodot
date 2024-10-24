@@ -1,0 +1,93 @@
+.main-carousel {
+  width: 100%; /* 캐러셀 너비를 100%로 설정 */
+  overflow: hidden; /* 넘치는 부분은 숨김 처리 */
+  position: relative;
+}
+
+.carousel-image {
+  width: 100%; /* 캐러셀 이미지 너비를 100%로 설정 */
+  height: 800px; /* 높이는 자동으로 비율에 맞게 */
+  object-fit: cover; /* 이미지 비율 유지 */
+  filter: brightness(33%); /* 밝기 조정 */
+}
+
+/* ****************** */
+/*      경기 일정     */
+/* ****************** */
+.schedule-section {
+  position: relative; /* ScheduleSection에 상대 위치 설정 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+  height: 800px;
+}
+
+.schedule-boxes {
+  display: flex; /* Flexbox 사용 */
+  justify-content: center; /* 중앙 정렬 */
+  flex-wrap: nowrap; /* 여러 줄로 감싸기 X */
+  position: absolute; /* 절대 위치 설정 */
+  top: 25%; /* 원하는 위치 조정 */
+  left: 50%; /* 중앙 정렬을 위한 왼쪽 위치 */
+  transform: translateX(-50%); /* 중앙 정렬을 위한 변환 */
+  z-index: 10; /* 캐러셀 위에 표시되도록 z-index 조정 */
+  gap: 35px;
+}
+
+.schedule-box {
+  background-color: #d9d9d9;
+  padding: 20px; /* 내부 여백 */
+  width: 220px; /* 박스 너비 조정 */
+  height: 450px;
+  font-family: "GongGothicMedium", sans-serif;
+  font-size: 20px;
+  border-radius: 43px;
+  opacity: 0.85;
+  display: flex; /* Flexbox 사용 */
+  justify-content: center; /* 중앙 정렬 */
+  align-items: normal; /* 수직 중앙 정렬 */
+  /* align-content: start; */
+}
+
+p {
+  margin: 0 auto;
+}
+
+.schedule-box p {
+  width: 122px;
+  height: 34px;
+  border-radius: 63px;
+  background-color: #eaeaea;
+}
+
+.highlight {
+  background-color: #ffc9c7; /* 강조 색상 */
+  color: black; /* 텍스트 색상 */
+  opacity: 1;
+}
+
+.schedule-box.highlight p {
+  text-align: center;
+  color: #eeeeee;
+  background-color: #d71e17;
+  border-radius: 63px;
+  width: 122px;
+  height: 34px;
+}
+
+.schedule-section a {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 115%;
+  /* left: 50%; */
+  /* transform: translate(-50%, -50%); */
+  text-decoration: none;
+  color: #eeeeee;
+}
+
+/* 눈누 - 이사만루 폰트 */
+@font-face {
+  font-family: "GongGothicMedium";
+  src: url("../assets/fonts/esamanru\ Light.ttf") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}

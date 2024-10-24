@@ -1,0 +1,16 @@
+.table-options-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.delete-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 2%;
+}

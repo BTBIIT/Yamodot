@@ -1,0 +1,107 @@
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* 요소 사이에 간격 추가 */
+}
+
+.search-bar select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px; /* 전체 둥근 모서리 */
+  outline: none;
+  width: 100px; /* select 요소의 고정 크기 */
+  appearance: none; /* 기본 브라우저 스타일 제거 */
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="none" stroke="%23000" stroke-width="2" d="M2 7l10 10 10-10z"/></svg>')
+    no-repeat right 10px center;
+  background-size: 12px; /* 화살표 크기 설정 */
+  background-color: #fff; /* 배경색 설정 */
+}
+
+.search-bar input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px; /* 입력 창도 둥근 모서리 */
+  outline: none;
+  width: 250px; /* 입력 창 너비 고정 */
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #ff5e57;
+  color: white;
+  cursor: pointer;
+  border-radius: 20px; /* 버튼도 둥근 모서리 */
+}
+
+.search-bar button:hover {
+  background-color: #e54e47; /* 호버 시 색상 변경 */
+}
+
+.filter-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.select-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.board-select,
+.category-select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  outline: none;
+  appearance: none;
+  background-color: white;
+  position: relative;
+}
+
+.board-select {
+  width: 120px;
+}
+
+.category-select {
+  width: 100px;
+}
+
+.search-input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  outline: none;
+  width: 300px;
+}
+
+.search-button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #ff4d4f;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #e54e47;
+}
+
+.custom-select {
+  position: relative;
+}
+
+.custom-select::after {
+  content: "▼"; /* 드롭다운 화살표 추가 */
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* 드롭다운 화살표를 클릭해도 드롭다운이 열리지 않도록 설정 */
+  font-size: 12px;
+  color: #333;
+}

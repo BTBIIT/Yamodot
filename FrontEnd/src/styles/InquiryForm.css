@@ -1,0 +1,174 @@
+/* InquiryForm 전용 폼 스타일 */
+/* .inquiry-form .post-form {
+  width: 100%;
+} */
+
+.inquiry-form .form-group {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding-bottom: 10px;
+  margin-right: 10px;
+  /* margin-bottom: 20px; */
+}
+
+/* =============================10-17============================== */
+/* 기존 파일 선택 버튼 숨기기 */
+.form-control-file {
+  display: none; /* 기본 파일 선택 버튼 숨기기 */
+}
+
+/* 기본 파일 선택 스타일을 변경 */
+.custom-file-upload {
+  width: 130px !important;
+  text-align: center !important;
+  height: 30px;
+  background: #fff;
+  border: 1px solid #d2d2d2 !important;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.custom-file-upload:hover {
+  background: #d2d2d2 !important;
+  color: black !important;
+}
+
+.inquiry-form .form-group label {
+  width: 70px;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.public-label {
+  width: 120px !important;
+  display: inline-block !important;
+}
+
+.password-label {
+  width: 120px !important;
+  display: inline-block !important;
+}
+/* ================================================================== */
+.inquiry-form .char-counter {
+  text-align: right;
+  color: #666;
+  font-size: 0.7rem;
+  margin-top: 5px;
+}
+
+.inquiry-form .submit-btn {
+  margin-top: 50px !important;
+}
+
+/* 10-17 빨갱이 */
+.inquiry-form input:focus {
+  outline: none; /* 기본 브라우저 스타일 제거 */
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.5); /* 원하는 스타일 추가 */
+  border-color: #d71e17; /* 경계선을 빨간색으로 변경 */
+}
+
+/* 토글 스위치에만 적용되는 레이블 */
+.inquiry-form .form-group .custom-toggle-label {
+  width: 150px; /* 토글에 맞는 크기로 자동 조절 */
+  margin-left: 0;
+}
+
+/* 공개 여부 토글 버튼 스타일 */
+.inquiry-form .custom-toggle {
+  position: relative;
+  display: inline-block;
+  width: 120px;
+  height: 45px;
+  margin-top: 8px;
+}
+
+.inquiry-form .custom-toggle-input {
+  display: none;
+}
+
+.inquiry-form .custom-toggle-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: -6px;
+  right: 30px;
+  background-color: #ffc9c7;
+  border-radius: 34px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: 25px;
+  position: relative;
+  margin-left: 30px;
+}
+
+.inquiry-form .custom-toggle-input:checked + .custom-toggle-label {
+  background-color: #d2d2d2;
+}
+
+.inquiry-form .custom-toggle-switch {
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  transform: translateY(-50%);
+  width: 43px;
+  height: 43px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: left 0.3s ease;
+}
+
+.inquiry-form
+  .custom-toggle-input:checked
+  + .custom-toggle-label
+  .custom-toggle-switch {
+  left: 103px;
+}
+
+.inquiry-form .toggle-text {
+  font-family: "NanumSquareRound", sans-serif;
+  font-size: 14px;
+  position: absolute;
+  transition: all 0.3s ease;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.inquiry-form .toggle-text-left {
+  left: 15px;
+}
+
+.inquiry-form .toggle-text-right {
+  right: 15px;
+}
+
+.inquiry-form
+  .custom-toggle-input:not(:checked)
+  + .custom-toggle-label
+  .toggle-text-left {
+  display: none;
+}
+
+.inquiry-form
+  .custom-toggle-input:checked
+  + .custom-toggle-label
+  .toggle-text-left {
+  display: block;
+}
+
+.inquiry-form
+  .custom-toggle-input:not(:checked)
+  + .custom-toggle-label
+  .toggle-text-right {
+  display: block;
+}
+
+.inquiry-form
+  .custom-toggle-input:checked
+  + .custom-toggle-label
+  .toggle-text-right {
+  display: none;
+}

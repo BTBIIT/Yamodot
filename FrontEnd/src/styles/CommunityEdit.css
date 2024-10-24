@@ -1,0 +1,91 @@
+/* CommunityEdit 전용 폼 스타일 */
+.community-edit .post-form {
+  width: 100%;
+}
+
+.file-file {
+  display: flex;
+  flex-direction: row; /* 세로 정렬 */
+  align-items: center; /* 왼쪽 정렬 */
+  gap: 15px;
+  font-size: 0.9rem;
+  color: #d2d2d2;
+  padding-left: 14px;
+}
+
+.file-file p {
+  margin: 0;
+}
+
+.from-file {
+  display: flex;
+  flex-direction: column;
+}
+
+.community-edit .form-group {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 15px;
+}
+
+/* ==========================10-17================================== */
+
+/* 기존 파일 선택 버튼 숨기기 */
+.form-control-file {
+  display: none; /* 기본 파일 선택 버튼 숨기기 */
+}
+
+/* 기본 파일 선택 스타일을 변경 */
+.custom-file-upload {
+  width: 130px !important;
+  text-align: center !important;
+  height: 30px;
+  background: #fff;
+  border: 1px solid #d2d2d2 !important;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.custom-file-upload:hover {
+  background: #d2d2d2 !important;
+  color: black;
+}
+
+/* 내용 부분의 라벨 넓이 조정 */
+.textarea-group label {
+  display: inline-block;
+  width: 100px; /* 원하는 넓이로 변경 가능 */
+  text-align: left;
+  font-weight: bold;
+}
+
+/* ============================================================== */
+
+.community-edit .form-group label {
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: left;
+  gap: 10px;
+}
+
+.community-edit .form-control {
+  flex: 1;
+  padding: 1px;
+  border: none;
+  font-size: 1rem;
+}
+
+.community-edit .char-counter {
+  text-align: right;
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+/* 10-17 빨갱이 */
+.community-edit input:focus {
+  outline: none; /* 기본 브라우저 스타일 제거 */
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.5); /* 원하는 스타일 추가 */
+  border-color: #d71e17; /* 경계선을 빨간색으로 변경 */
+}

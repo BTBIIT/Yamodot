@@ -1,0 +1,38 @@
+.write-button:hover {
+  background-color: #f0f0f0;
+}
+
+/* 공통 컨테이너 스타일 */
+.write-button-container {
+  display: flex;
+  justify-content: flex-end; /* 오른쪽 정렬 */
+  width: 100%;
+  margin-top: 10px;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center; /* 중앙 정렬 */
+  margin-top: 20px;
+}
+
+/* 서치서치 바 10-07 */
+.search-bar-container {
+  display: flex;
+  justify-content: center; /* 중앙 정렬 */
+  margin-top: 10px;
+  width: 100%;
+}
+
+.community-page-container,
+.inquiry-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 모든 컨텐츠를 중앙에 정렬 */
+}
+
+/* 테그 타노스 핑커링 10-08 */
+a {
+  text-decoration: none !important;
+  /* color: black !important; */
+}

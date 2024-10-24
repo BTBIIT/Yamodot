@@ -1,0 +1,42 @@
+.comment-postTitle {
+  cursor: pointer;
+  text-align: left;
+  display: block;
+}
+
+.comment-header {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #222222;
+  text-align: left;
+  margin: 10px 0 20px 0;
+}
+
+.comment-meta-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #8e8e8e;
+  padding: 3px 3px;
+}
+
+.comment-info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.modal-comment-content {
+  margin: 40px 30px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  min-height: 200px;
+}
+
+.comment-delete {
+  cursor: pointer;
+}
+
+.comment-delete:hover {
+  color: #d71e17;
+}

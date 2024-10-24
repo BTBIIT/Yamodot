@@ -1,0 +1,204 @@
+/************************/
+/*         기록         */
+/************************/
+
+/* 투타수 선택 박스 */
+.record-select-container {
+  font-family: "NanumSquareRound", sans-serif;
+  font-weight: lighter;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  height: 72px;
+  padding: 0 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.player-select-container,
+.year-team-select-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 상대전적 선택 박스 */
+.pitbatMatchUp-select-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.matchup-text {
+  font-family: "NanumSquareRound", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding-left: 26px;
+}
+
+.matchup-vs {
+  color: #d71e17;
+}
+
+/************************/
+/************************/
+
+/************************/
+/*         분석         */
+/************************/
+
+/* 승패예측 - 선수 */
+.analysis-player-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 15px 30px;
+  width: 80%;
+}
+
+.analysis-player {
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+  font: 0.9rem "NanumSquareRound";
+}
+
+.analysis-player .away {
+  margin-right: 10px;
+}
+
+.analysis-player .home {
+  margin-left: 10px;
+}
+
+/* 구장 별 승률 */
+.chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  width: 100%;
+  height: 500px;
+  padding: 0 25px;
+}
+
+.PredictionForm_Buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.PredictionForm_Result {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 200%;
+}
+
+.team-victory-thead {
+  display: none;
+}
+
+/* 분석 그래프 */
+.TeamAnalytics {
+  font-family: "NanumSquareRound";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 30px;
+}
+
+.TeamInfo {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* padding: 20px; */
+}
+
+.TeamInfo_Away,
+.TeamInfo_Home {
+  text-align: center;
+}
+
+.TeamInfo_Away_name,
+.TeamInfo_Home_name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.TeamInfo_Away_Score,
+.TeamInfo_Home_Score {
+  font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+}
+
+.TeamInfo_Away_Score_Rank,
+.TeamInfo_Home_Score_Rank {
+  color: #d71e17;
+}
+
+.TeamInfo_VS {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.team-power-info-table {
+  /* width: 100%; */
+  table-layout: fixed;
+  margin-top: 20px;
+}
+
+.team-power-info-table th,
+.team-power-info-table td {
+  text-align: center;
+  padding: 10px;
+}
+
+.team-victory-score-area,
+.team-victory-avg-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.team-victory-score-text,
+.team-victory-avg-text {
+  font-size: 0.9rem;
+  margin: 10px;
+  color: #757575;
+}
+
+.team-power-info-table th {
+  font-size: 14px;
+  color: gray;
+}
+
+.TeamMatchUp {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.TeamMatchUp_Away,
+.TeamMatchUp_Home {
+  display: flex;
+  gap: 10px;
+}
+
+.TeamMatchUp_Away span,
+.TeamMatchUp_Home span {
+  display: block;
+  padding: 5px;
+  color: #555;
+}

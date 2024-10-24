@@ -1,0 +1,173 @@
+/* 댓글 항목 전체를 감싸는 컨테이너 */
+.comment-item {
+  position: relative; /* 수정 및 삭제 버튼을 오른쪽 끝에 배치하기 위해 position 추가 */
+  display: flex;
+  flex-direction: column; /* 수직 배치 */
+  margin-bottom: 1vh; /* 댓글 간의 간격 */
+  padding-bottom: 1vh; /* 구분선을 위한 패딩 */
+  border-bottom: 1px solid #ddd; /* 밑줄 추가 */
+  text-align: left;
+  padding-left: 0;
+}
+
+/* 마지막 댓글의 밑줄 제거 */
+.comment-item:last-child {
+  border-bottom: none;
+}
+
+/* 댓글 내용 */
+.comment-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 7px;
+  word-wrap: break-word; /* 단어가 너무 길 경우 자동으로 줄 바꿈 */
+  word-break: break-all; /* 긴 단어를 적절히 분리 */
+  overflow-wrap: break-word; /* 텍스트가 넘치면 줄 바꿈 */
+}
+
+/* 댓글 닉네임 */
+.comment-nickname {
+  font-size: 0.8rem;
+  color: #b8b8b8;
+  /* margin-bottom: 6px; 닉네임과 댓글 간의 간격 */
+
+  align-items: center;
+  text-align: left;
+}
+
+.comment-nickname > span {
+  color: #000;
+}
+
+/* 댓글 내용 답글 내용 */
+.comment-text .reply-text {
+  margin-bottom: 8px;
+  font-size: 0.9rem; /* 댓글 크기 조정 */
+  line-height: 1.4vh; /* 줄 간격 조정 */
+  text-align: left;
+}
+
+/* 댓글 날짜와 대댓글 버튼을 한 줄에 배치 */
+.comment-meta {
+  justify-content: space-between; /* 날짜와 답글쓰기를 양쪽으로 배치 */
+  gap: 15px; /* 날짜와 답글 버튼 사이 간격 */
+  line-height: 1.4vh;
+  text-align: left;
+  margin-left: 17px;
+  color: #b8b8b8;
+  font-size: 0.9rem;
+  align-items: center;
+  display: flex;
+}
+
+/* 수정 및 삭제 버튼을 드롭다운 메뉴로 스타일링 */
+.comment-dropdown {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.dropdown-icon {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* 드롭다운 메뉴 */
+.dropdown-menu {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+  width: 60px; /* 너비를 명시적으로 설정 */
+  white-space: nowrap; /* 텍스트가 줄 바꿈되지 않게 설정 */
+  overflow: hidden; /* 넘치는 텍스트는 숨김 */
+}
+
+.dropdown-menu.open {
+  display: block; /* 드롭다운이 열렸을 때 표시 */
+}
+
+/* 드롭다운 메뉴 버튼 */
+.dropdown-menu button {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  background-color: transparent;
+  border: none;
+  text-align: center; /* 텍스트 중앙 정렬 */
+  cursor: pointer;
+  font: 0.9rem "NanumSquareRound";
+  color: #b8b8b8;
+}
+
+/* 드롭다운 메뉴 버튼 호버 효과 */
+.dropdown-menu button:hover {
+  background-color: #f0f0f0;
+}
+
+.reply {
+  list-style-type: none;
+}
+
+/* 답글 박스 이거 왜이렇누... */
+.textarea {
+  width: 100%; /* 입력 박스의 너비를 100%로 설정하여 더 길게 */
+  height: 50px; /* 입력 박스의 높이를 고정 */
+  resize: none; /* 입력 박스 크기 조정 비활성화 */
+  margin-bottom: -12px;
+  margin-top: 50px;
+  padding: 15px;
+  font-size: 1rem; /* 글씨 크기 */
+  border: 1px solid #ddd; /* 테두리 */
+  border-radius: 5px;
+  outline: none; /* 포커스 시 기본 테두리 제거 */
+}
+
+/* 답글 내용 박스 */
+.reply-content {
+  display: flex;
+  justify-content: flex-start; /* 답글 내용과 수정/삭제 버튼을 양쪽으로 배치 */
+  /* align-items: center; 수직 중앙 정렬 */
+  margin-top: 5px;
+  /* margin-right: 500px; */
+  margin-bottom: 20px;
+}
+
+/* 드롭다운 아이콘 버튼 */
+.dropdown-toggle {
+  background: none; /* 배경 제거 */
+  border: none; /* 테두리 제거 */
+  cursor: pointer; /* 마우스 포인터 변경 */
+  padding: 0; /* 여백 제거 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-appearance: none; /* WebKit 브라우저에서 화살표 제거 */
+  -moz-appearance: none; /* Firefox에서 화살표 제거 */
+  appearance: none; /* 기본 브라우저 화살표 제거 */
+  background: none; /* 배경 제거 */
+  border: none; /* 테두리 제거 */
+  padding-right: 0; /* 오른쪽 여백 제거 */
+  cursor: pointer;
+}
+
+/* 아이콘이 클릭되었을 때 배경색 제거 */
+.dropdown-toggle:focus {
+  outline: none; /* 포커스 시 기본 테두리 제거 */
+  background: none; /* 배경 제거 */
+  box-shadow: none; /* 그림자 제거 */
+}
+
+/* 아이콘만 표시하고 불필요한 요소 제거 */
+.dropdown-toggle::after {
+  display: none; /* 기본 화살표 제거 */
+}

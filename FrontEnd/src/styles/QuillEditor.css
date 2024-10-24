@@ -1,0 +1,53 @@
+/* Quill 전체 컨테이너 크기 설정 */
+.quill-editor-container {
+  height: auto; /* 전체 에디터 높이 설정 */
+  display: flex;
+  flex-direction: column;
+  width: 130%;
+}
+
+/* Quill 본문 입력 칸 높이 조정 */
+.ql-container {
+  height: 460px;
+  max-height: 500px; /* 최대 높이 설정 가능 */
+}
+
+.ql-editor {
+  min-height: 300px; /* 본문 작성 공간 최소 높이 */
+  height: 400px; /* 본문 작성 공간 높이 */
+  padding: 10px; /* 텍스트 여백 조정 */
+}
+
+/* 폰트 스타일 추가 (2024-10-06 추가) */
+.ql-font-arial {
+  font-family: Arial, sans-serif;
+}
+.ql-font-courier {
+  font-family: Courier, monospace;
+}
+/* .ql-font-comic-sans {
+  font-family: "Comic Sans MS", sans-serif;
+}
+.ql-font-georgia {
+  font-family: Georgia, serif;
+}
+.ql-font-impact {
+  font-family: Impact, sans-serif;
+} */
+.ql-font-times-new-roman {
+  font-family: "Times New Roman", serif;
+}
+/* .ql-font-verdana {
+  font-family: Verdana, sans-serif;
+} */
+
+/* Google Fonts 추가 폰트 (2024-10-06 추가) */
+/* .ql-font-roboto {
+  font-family: "Roboto", sans-serif;
+}
+.ql-font-lobster {
+  font-family: "Lobster", cursive;
+}
+.ql-font-open-sans {
+  font-family: "Open Sans", sans-serif;
+} */
