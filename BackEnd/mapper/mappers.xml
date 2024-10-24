@@ -1,0 +1,1006 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.Mappers">
+
+
+
+    <!-- 지훈님 관리 매퍼 -->
+    <resultMap id="batters" type="com.example.records.model.Batters">
+        <result column="2b" property="twoB" />
+        <result column="3b" property="threeB" />
+        <result column="ph-ba" property="phba" />
+    </resultMap>
+    <resultMap id="defence" type="com.example.records.model.Defence">
+        <result column="cs%" property="csp" />
+    </resultMap>
+    <resultMap id="pitchers" type="com.example.records.model.Pitchers">
+        <result column="2b" property="twoB" />
+        <result column="3b" property="threeB" />
+    </resultMap>
+    <resultMap id="pitBatMatchup" type="com.example.records.model.PitBatMatchup">
+        <result column="2b" property="twoB" />
+        <result column="3b" property="threeB" />
+    </resultMap>
+    <resultMap id="defencesTeamRecord" type="com.example.records.model.DefencesTeamRecord">
+        <result column="cs%" property="csp" />
+    </resultMap>
+    <resultMap id="battersTeamRecord" type="com.example.records.model.BattersTeamRecord">
+        <result column="2b" property="twoB" />
+        <result column="3b" property="threeB" />
+        <result column="ph-ba" property="phba" />
+    </resultMap>
+    <resultMap id="pitchersTeamRecord" type="com.example.records.model.PitchersTeamRecord">
+        <result column="2b" property="twoB" />
+        <result column="3b" property="threeB" />
+    </resultMap>
+    <select id="selectAllResults" resultType="com.example.scheduleresults.model.ScheduleResults">
+        SELECT * FROM schedule
+        WHERE LEFT(game_date, 4) = #{year}
+        AND SUBSTRING(game_date, 6, 2) = #{month}
+        AND season = '정규'
+        ORDER BY game_date ASC;
+    </select>
+    <select id="selectMainSchedule" resultType="com.example.scheduleresults.model.ScheduleResults">
+        SELECT * FROM schedule
+        WHERE game_date LIKE CONCAT(#{gameDate}, '%');
+    </select>
+    <select id="selectPostResults" resultType="com.example.scheduleresults.model.ScheduleResults">
+        SELECT * FROM schedule
+        WHERE LEFT(game_date, 4) = #{year}
+        AND SUBSTRING(game_date, 6, 2) = #{month}
+        AND season = '포스트'
+        ORDER BY game_date ASC;
+    </select>
+    <select id="selectAllScoreBoard" resultType="com.example.scheduleresults.model.ScoreBoard">
+        SELECT * FROM scoreboard
+        WHERE LEFT(game_date, 10) = #{gameDate};
+    </select>
+    <select id="selectPrevScoreBoard" resultType="com.example.scheduleresults.model.ScoreBoard">
+        SELECT *
+        FROM scoreboard
+        WHERE LEFT(game_date, 10) = (
+            SELECT LEFT(game_date, 10)
+            FROM scoreboard
+            WHERE LEFT(game_date, 10) &lt; #{gameDate}
+            ORDER BY game_date DESC
+            LIMIT 1
+        )
+        ORDER BY game_date DESC;
+    </select>
+    <select id="selectNextScoreBoard" resultType="com.example.scheduleresults.model.ScoreBoard">
+        SELECT *
+        FROM scoreboard
+        WHERE LEFT(game_date, 10) = (
+            SELECT LEFT(game_date, 10)
+            FROM scoreboard
+            WHERE LEFT(game_date, 10) &gt; #{gameDate}
+            ORDER BY game_date ASC
+            LIMIT 1
+        )
+        ORDER BY game_date DESC;
+    </select>
+    <select id="selectAllDefence" resultMap="defence">
+        SELECT * FROM defences
+        WHERE year = #{year} AND team_name LIKE #{teamName}
+        ORDER BY g DESC;
+    </select>
+    <select id="selectAllPitchers" resultType="Pitchers">
+        SELECT * FROM pitchers
+        WHERE year = #{year} AND team_name LIKE #{teamName}
+        ORDER BY CASE WHEN ip / g &gt; 4 THEN 1 ELSE 2 END, era ASC;
+    </select>
+    <select id="selectAllBatters" resultMap="batters">
+        SELECT * FROM batters
+        WHERE year = #{year} AND team_name LIKE #{teamName}
+        ORDER BY CASE WHEN avg &lt; 0.5 THEN 1 ELSE 2 END, avg DESC;
+    </select>
+    <select id="selectPitBatMatchup" resultMap="pitBatMatchup">
+        SELECT * FROM pit_bat_matchup
+        WHERE pitcher_team = #{pitcherTeam}
+        AND pitcher = #{pitcher}
+        AND batter_team = #{batterTeam}
+        AND batter = #{batter};
+    </select>
+    <select id="selectPitchersList" resultMap="pitBatMatchup">
+        SELECT DISTINCT pitcher
+        FROM pit_bat_matchup
+        WHERE pitcher_team = #{pitcherTeam}
+        ORDER BY pitcher ASC;
+    </select>
+    <select id="selectBattersList" resultMap="pitBatMatchup">
+        SELECT DISTINCT batter
+        FROM pit_bat_matchup
+        WHERE batter_team = #{batterTeam}
+        ORDER BY batter ASC;
+    </select>
+    <select id="selectDefencesTeamRecord" resultMap="defencesTeamRecord">
+        SELECT * FROM defences_team_record
+        WHERE year = #{year}
+        ORDER BY po DESC;
+    </select>
+    <select id="selectBattersTeamRecord" resultMap="battersTeamRecord">
+        SELECT * FROM batter_team_record
+        WHERE year = #{year}
+        ORDER BY avg DESC;
+    </select>
+    <select id="selectPitchersTeamRecord" resultMap="pitchersTeamRecord">
+        SELECT * FROM pitchers_team_record
+        WHERE year = #{year}
+        ORDER BY era ASC;
+    </select>
+
+
+
+
+
+
+    <!-- 기표님 관리 매퍼 -->
+    <!-- 관리자 로그인 -->
+    <select id="loginAdmin">
+        SELECT * 
+        FROM admin 
+        WHERE BINARY admin_id = #{adminId} 
+        AND BINARY admin_password = #{adminPassword} 
+        AND BINARY role = "admin";
+    </select>
+    <!-- 관리자정보 조회 -->
+    <select id="findbyAdminUniue">
+        SELECT * 
+        FROM admin 
+        WHERE admin_unique_number = #{adminUniqueNumber} 
+        AND BINARY role = "admin";
+    </select>
+    <!-- 소셜 회원가입 쿼리 -->
+    <insert id="socialSignupUser" parameterType="com.example.login_signup_back.model.User">
+        INSERT INTO users 
+        						(user_unique_number, 
+        						user_name, user_nickname, 
+        						user_email, 
+        						user_create_date, 
+        						user_social_login_sep, 
+        						role)
+        VALUES (
+        				#{userUniqueNumber}, 
+        				#{userName}, 
+        				#{userNickname}, 
+        				#{userEmail}, 
+        				#{userCreateDate}, 
+        				#{userSocialLoginSep}, 
+        				"user"
+        			 );
+    </insert>
+    <!-- 이메일로 사용자 찾기(고유아이디 기준 토큰 안될때 복구해야함) -->
+    <select id="findByEmail" resultType="com.example.login_signup_back.model.User">
+        SELECT * 
+        FROM users 
+        WHERE BINARY user_email = #{userEmail} 
+        OR BINARY user_id = #{userEmail} 
+        LIMIT 1;
+    </select>
+    <!-- 사용자 ID와 비밀번호로 사용자 정보 조회 -->
+    <select id="loginUser" resultType="com.example.login_signup_back.model.User">
+        SELECT * 
+        FROM users 
+        WHERE BINARY user_id = #{userId} 
+        AND BINARY user_password = #{userPassword};
+    </select>
+    <!-- 회원가입 쿼리 -->
+    <insert id="signupUser" parameterType="com.example.login_signup_back.model.User">
+        INSERT INTO users (
+			        						user_unique_number, 
+			        						user_id, user_name, 
+			        						user_password, 
+			        						user_email, 
+			        						user_nickname, 
+			        						user_create_date, 
+			        						user_edit_information_date, 
+			        						user_stop_date, 
+			        						user_before_password, 
+			        						user_birth_day, 
+			        						user_gender, 
+			        						user_favorite_team, 
+			        						user_svc_use_pcy_agmt_yn, 
+			        						user_ps_info_proc_agmt_yn, 
+			        						user_social_login_sep, 
+			        						role
+			        						)
+        VALUES (
+        				#{userUniqueNumber}, 
+        				#{userId}, 
+        				#{userName}, 
+        				#{userPassword}, 
+        				#{userEmail}, 
+        				#{userNickname}, 
+        				NOW(), 
+        				NOW(), 
+        				#{userStopDate}, 
+        				#{userPassword}, 
+        				#{userBirthDay}, 
+        				#{userGender}, 
+        				#{userFavoriteTeam}, 
+        				#{userSvcUsePcyAgmtYn}, 
+        				#{userPsInfoProcAgmtYn}, 
+        				#{userSocialLoginSep}, 
+        				"user"
+        			 );
+    </insert>
+    <!-- 모든 사용자 ID 목록 가져오기 -->
+    <select id="getAllUserIds" resultType="string">
+        SELECT user_id 
+        FROM users;
+    </select>
+    <!-- 모든 사용자 닉네임 목록 가져오기 -->
+    <select id="getAllUserNicknames" resultType="string">
+        SELECT user_nickname 
+        FROM users;
+    </select>
+    <!-- 회원 정보 수정 쿼리 -->
+    <update id="updateUserInfo">
+        UPDATE users
+        SET 
+        		user_nickname = #{userNickname}, 
+        		user_birth_day = #{userBirthDay}, 
+        		user_gender = #{userGender}, 
+        		user_favorite_team = #{userFavoriteTeam}, 
+        		user_edit_information_date = NOW()
+        WHERE user_unique_number = #{userUniqueNumber};
+    </update>
+    <!-- 사용자 닉네임 조회 (자신의 닉네임을 제외하고 중복 확인) -->
+    <select id="getAllUserNicknamesExcept" resultType="String">
+        SELECT user_nickname 
+        FROM users 
+        WHERE user_unique_number != #{userUniqueNumber};
+    </select>
+    <!-- 현재 비밀번호 조회 쿼리(비밀번호 변경용) -->
+    <select id="getUserPassword" resultType="com.example.login_signup_back.model.User">
+        SELECT user_password, 
+        			 user_before_password 
+        FROM users 
+        WHERE user_unique_number = #{userUniqueNumber};
+    </select>
+    <!-- 사용자 정보 조회 (userUniqueNumber 기준) -->
+    <select id="findByUniqueId" resultType="com.example.login_signup_back.model.User">
+        SELECT * 
+        FROM users 
+        WHERE user_unique_number = #{userUniqueNumber};
+    </select>
+    <!-- 비밀번호 수정 쿼리 (user_unique_number만 사용) -->
+    <update id="updateUserPassword">
+        UPDATE users
+        SET 
+        		user_password = #{userPassword}, 
+        		user_before_password = #{userBeforePassword}, 
+        		user_edit_information_date = NOW()
+        WHERE user_unique_number = #{userUniqueNumber};
+    </update>
+    <!-- 아이디 찾기 -->
+    <select id="findUserId" parameterType="com.example.login_signup_back.model.User">
+        SELECT user_id 
+        FROM users 
+        WHERE user_name = #{userName} 
+        AND user_email = #{userEmail};
+    </select>
+    <!-- 비밀번호 찾기 (userId와 email로 조회) -->
+    <select id="findByUserIdAndEmail" resultType="com.example.login_signup_back.model.User">
+        SELECT * 
+        FROM users 
+        WHERE BINARY user_id = #{userId} 
+        AND BINARY user_email = #{userEmail};
+    </select>
+    <!-- 비밀번호 업데이트 쿼리 -->
+    <update id="findUserPasswordByEmail">
+        UPDATE users 
+        SET 
+        		user_password = #{newPassword}, 
+        		user_edit_information_date = NOW() 
+        WHERE BINARY user_id = #{userId} 
+        AND BINARY user_email = #{userEmail} 
+        AND user_social_login_sep = "Y";
+    </update>
+    <!-- 회원 탈퇴 (삭제) -->
+    <delete id="deleteUser" parameterType="map">
+        DELETE 
+        FROM users 
+        WHERE user_unique_number = #{userUniqueNumber} 
+        AND user_email = #{userEmail} 
+        AND user_social_login_sep = #{userSocialLoginSep};
+    </delete>
+    <!-- 관리자용: 모든 사용자 정보 조회 쿼리 -->
+    <select id="findAllUsers" resultType="com.example.login_signup_back.model.User">
+        SELECT * 
+        FROM users;
+    </select>
+    <!-- 관리자에 의한 사용자 정보 업데이트 -->
+    <update id="updateUserInfoByAdmin" parameterType="com.example.login_signup_back.model.User">
+        UPDATE users
+        SET 
+        		user_state = #{userState}, 
+        		user_stop_date = #{userStopDate}, 
+        		user_stop_count = #{userStopCount}
+        WHERE user_unique_number = #{userUniqueNumber};
+    </update>
+    <!-- 정지된 사용자 조회 -->
+    <select id="findSuspendedUsers" resultType="com.example.login_signup_back.model.User">
+        SELECT * 
+        FROM users 
+        WHERE user_state = 'S' 
+        AND user_stop_date IS NOT NULL;
+    </select>
+
+
+
+
+
+
+ <!-- 재훈님 관리 매퍼 -->
+
+
+   <resultMap id="CommunityResultMap"
+      type="com.example.community.model.Community">
+      <id property="postId" column="post_id" />
+      <result property="postTitle" column="post_title" />
+      <result property="postContent" column="post_content" />
+      <result property="categoryName" column="category_name" />
+      <result property="postView" column="post_view" />
+      <result property="userUniqueNumber" column="user_unique_number" />
+      <result property="communityDate" column="community_date"
+         javaType="java.time.LocalDateTime" jdbcType="TIMESTAMP" /> <!-- 날짜 필드 추가 -->
+      <result property="postImgPath" column="post_img_path" />
+      <result property="commentCount" column="comment_count" />
+   </resultMap>
+
+   <!-- Community 관련 -->
+   <select id="findNicknameByUserUniqueNumber" resultType="String">
+      SELECT
+      user_nickname
+      FROM users
+      WHERE user_unique_number = #{userUniqueNumber}
+   </select>
+
+   <select id="getAllCommunityPosts" resultMap="CommunityResultMap">
+      SELECT
+      c.post_id,
+      c.post_title,
+      c.post_content,
+      c.category_name,
+      c.post_view,
+      c.user_unique_number,
+      c.community_date,
+      c.post_img_path,
+      c.community_id
+      FROM
+      community c
+      JOIN
+      users u
+      ON
+      c.user_unique_number =
+      u.user_unique_number
+      ORDER BY
+      c.community_date DESC; -- 게시물은 최신순으로 정렬
+   </select>
+
+
+   <select id="getCommunityPostById" resultMap="CommunityResultMap">
+      SELECT
+      post_id,
+      post_title,
+      post_content,
+      category_name,
+      post_view,
+      user_unique_number,
+      post_img_path,
+      community_date,
+      community_id
+      FROM community
+      WHERE post_id =
+      #{postId}
+   </select>
+
+   <!-- 사용자 고유번호로 게시글 조회 -->
+   <select id="getPostsByUser"
+      resultType="com.example.community.model.Community">
+      SELECT
+      c.post_id,
+      c.category_name,         <!-- 게시판명 -->
+      -- 제목에서 대괄호 안에 있는 카테고리명 제거 후 순수 제목만 반환
+      TRIM(SUBSTRING_INDEX(c.post_title, ']', -1)) AS post_title,
+      (
+      SELECT
+      COUNT(*)
+      FROM comment co
+      WHERE co.post_id = c.post_id
+      ) + (
+      SELECT
+      COUNT(*)
+      FROM reply r
+      WHERE r.post_id = c.post_id
+      ) AS comment_count,   <!-- 
+         댓글수 -->
+      c.post_view,          <!-- 조회수 -->
+      c.community_date    <!-- 작성일 -->
+      FROM
+      community c
+      WHERE
+      c.user_unique_number = #{userUniqueNumber}
+   </select>
+
+   <update id="increasePostView">
+      UPDATE community
+      SET post_view = post_view + 1
+      WHERE
+      post_id = #{postId}
+   </update>
+
+   <insert id="createCommunityPost"
+      parameterType="com.example.community.model.Community">
+      INSERT INTO community (
+      community_id,
+      post_title,
+      post_content,
+      category_name,
+      post_view,
+      user_unique_number,
+      post_img_path,
+      admin_unique_number,
+      community_date
+      )
+      VALUES (
+      #{communityId},
+      #{postTitle},
+      #{postContent},
+      #{categoryName},
+      #{postView},
+      #{userUniqueNumber},
+      <if test="postImgPath != null">
+         #{postImgPath},
+      </if>
+      <if test="postImgPath == null">
+         DEFAULT,
+      </if>
+      'A001', <!-- 관리자 아이디 고정 -->
+      NOW()
+      )
+   </insert>
+
+   <!-- 파일 경로를 NULL로 업데이트하는 SQL 쿼리 -->
+   <update id="updateCommunityFilePathToNull">
+      UPDATE community
+      SET post_img_path = NULL
+      WHERE post_id = #{postId}
+   </update>
+
+   <update id="updateCommunityPost"
+      parameterType="com.example.community.model.Community">
+      UPDATE community
+      SET
+      post_title = #{postTitle},
+      post_content = #{postContent},
+      category_name = #{categoryName},
+      post_view = #{postView},
+      comm_change_date = NOW(),
+      post_img_path =
+      #{postImgPath}
+      WHERE post_id = #{postId}
+   </update>
+
+   <delete id="deleteCommunityPost">
+      DELETE FROM community WHERE post_id = #{postId}
+   </delete>
+
+   <!-- Question 관련 -->
+   <resultMap id="QuestionResultMap"
+      type="com.example.question.model.Question">
+      <id property="questionNum" column="question_num" />
+      <result property="questionTitle" column="question_title" />
+      <result property="questionContent" column="question_content" />
+      <result property="privateQuestionPassworld"
+         column="private_question_passworld" />
+      <result property="userUniqueNumber" column="user_unique_number" />
+      <result property="questionPostView" column="question_post_view" />
+      <result property="questionDate" column="question_date"
+         javaType="java.time.LocalDateTime" jdbcType="TIMESTAMP" /> <!-- 날짜 필드 추가 -->
+      <result property="priviteOption" column="privite_option" />
+      <result property="questionImgPath" column="question_img_path" />
+      <result property="questionAnswer" column="question_answer" />
+   </resultMap>
+
+   <!-- 전체가져오기 -->
+   <select id="getAllQuestions" resultMap="QuestionResultMap">
+      SELECT
+      question_num,
+      question_title,
+      question_content,
+      user_unique_number,
+      question_post_view,
+      private_question_passworld,
+      question_date,
+      private_option,
+      question_id,
+      question_answer
+      FROM
+      question
+      ORDER BY question_date DESC
+   </select>
+
+   <!-- 특정 userUniqueNumber로 작성된 모든 문의글 조회 -->
+   <select id="getQuestionsByUser"
+      resultType="com.example.question.model.Question">
+      SELECT question_num ,question_title, question_post_view,
+      question_date, private_option
+      FROM question
+      WHERE user_unique_number =
+      #{userUniqueNumber}
+   </select>
+   
+   <!-- 상세보기 -->
+   <select id="getQuestionById" resultMap="QuestionResultMap">
+      SELECT
+      question_num,
+      question_title,
+      question_content,
+      user_unique_number,
+      question_post_view,
+      private_question_passworld,
+      question_date,
+      question_answer,
+      private_option,
+      question_img_path,
+      question_id
+      FROM
+      question
+      WHERE
+      question_num = #{questionNum}
+   </select>
+
+   <update id="increaseQuestionView">
+      UPDATE question
+      SET question_post_view =
+      question_post_view + 1
+      WHERE
+      question_num = #{questionNum}
+   </update>
+
+   <!-- 문의 등록 -->
+   <insert id="createQuestion"
+      parameterType="com.example.question.model.Question">
+      INSERT INTO question (
+      question_id,
+      question_title,
+      question_content,
+      user_unique_number,
+      private_question_passworld,
+      question_post_view,
+      admin_unique_number,
+      private_option,  <!-- private_option 위치 수정 -->
+      question_img_path,  <!--question_img_path 위치 수정 -->
+      question_date  <!-- question_date 위치 수정 -->
+      ) VALUES (
+      #{questionId},
+      #{questionTitle},
+      #{questionContent},
+      #{userUniqueNumber},
+      <choose>
+         <when test="privateQuestionPassworld != null">
+            #{privateQuestionPassworld}
+         </when>
+         <otherwise>NULL</otherwise> <!-- 비밀번호가 없을 때 NULL 저장 -->
+      </choose>
+      ,
+      #{questionPostView},
+      'A001',
+      #{privateOption},  <!-- privateOption 값 위치 수정 -->
+      <choose>
+         <when test="questionImgPath != null">
+            #{questionImgPath}
+         </when>
+         <otherwise>NULL</otherwise> <!-- 이미지 경로가 없을 때 NULL 저장 -->
+      </choose>
+      ,
+      NOW() <!-- question_date를 위한 NOW() -->
+      )
+   </insert>
+   
+       <!-- 파일 경로를 NULL로 업데이트하는 SQL 쿼리 -->
+    <update id="updateQuestionFilePathToNull">
+        UPDATE question
+        SET inquiry_img_path = NULL
+        WHERE question_num = #{questionNum}
+    </update>
+
+   <update id="updateQuestion"
+      parameterType="com.example.question.model.Question">
+      UPDATE question
+      SET
+      question_title = #{questionTitle},
+      question_content =
+      #{questionContent},
+      question_post_view =
+      #{questionPostView},
+      question_img_path = #{questionImgPath},
+      private_option =
+      #{privateOption} <!-- privateOption 추가 하..시 10-05 -->
+      WHERE
+      question_num = #{questionNum}
+   </update>
+
+   <delete id="deleteQuestion">
+      DELETE FROM question WHERE question_num =
+      #{questionNum}
+   </delete>
+
+   <!-- 답변 추가 또는 수정 -->
+   <update id="updateAnswer">
+      UPDATE question
+      SET question_answer = #{answer},
+      answer_date = NOW()
+      WHERE question_num = #{questionNum}
+   </update>
+
+   <!-- 답변 삭제 -->
+   <update id="deleteAnswer">
+      UPDATE question
+      SET question_answer = NULL,
+      answer_date = NULL
+      WHERE question_num = #{questionNum}
+   </update>
+
+   <!-- 댓글 관련 쿼리 -->
+
+   <!-- 댓글 및 답글 조회 -->
+   <select id="getCommentsByPostId"
+      resultType="com.example.community.model.Comment">
+      SELECT
+      c.comment_name,
+      c.post_id,
+      c.comment_content,
+      c.user_unique_number,
+      c.comment_date,
+      c.post_comment_num,
+      NULL AS
+      reply_id,
+      'comment' AS type,
+      NULL AS replyName
+      FROM
+      comment c
+      WHERE
+      c.post_id = #{postId}
+
+      UNION
+
+      SELECT
+      NULL AS commentName,
+      r.post_id,
+      r.reply_content AS comment_content,
+      r.user_unique_number,
+      r.reply_date
+      AS comment_date,
+      r.post_comment_num,
+      r.reply_id,
+      'reply' AS type,
+      r.reply_name
+      FROM
+      reply r
+      WHERE
+      r.post_id = #{postId}
+      ORDER BY
+      post_comment_num ASC,
+      reply_id ASC;
+   </select>
+
+
+
+   <!-- 특정 게시물의 특정 댓글 조회 -->
+   <select id="getCommentById"
+      resultType="com.example.community.model.Comment">
+      SELECT * FROM comment
+      WHERE post_id = #{postId}
+      AND
+      post_comment_num = #{postCommentNum}
+   </select>
+
+   <!-- 사용자 고유번호로 작성한 댓글 및 답글 조회 -->
+   <select id="getCommentsByUser"
+      resultType="com.example.community.model.Comment">
+      SELECT
+      comm.post_id,   <!-- post_id -->
+      comm.category_name,    <!-- 게시판명 -->
+      -- 제목에서 [카테고리] 부분을 제거하고 순수한 제목만 가져옴
+      SUBSTRING_INDEX(comm.post_title,
+      ']', -1) AS post_title,
+      c.comment_content AS comment_content,   <!-- 댓글 내용 -->
+      c.comment_date AS comment_date,         <!-- 댓글 작성일 -->
+      c.post_comment_num AS post_comment_num, <!-- 댓글 고유 번호 -->
+      NULL AS reply_id,                       <!-- 답글 고유 번호는 NULL -->
+      'comment' AS type                       <!-- type을 'comment'로 설정 -->
+      FROM
+      comment c
+      JOIN
+      community comm ON c.post_id = comm.post_id
+      WHERE
+      c.user_unique_number = #{userUniqueNumber}  <!-- userUniqueNumber로 필터링 -->
+
+      UNION
+
+      SELECT
+      comm.post_id,   <!-- post_id -->
+      comm.category_name,    <!-- 게시판명 -->
+      -- 제목에서 [카테고리] 부분을 제거하고 순수한 제목만 가져옴
+      SUBSTRING_INDEX(comm.post_title,
+      ']', -1) AS post_title,
+      r.reply_content AS comment_content,      <!-- 답글 내용 -->
+      r.reply_date AS comment_date,            <!-- 답글 작성일 -->
+      post_comment_num,
+      r.reply_id AS reply_id,                  <!-- 답글 고유 번호 -->
+      'reply' AS type                          <!-- type을 'reply'로 설정 -->
+      FROM
+      reply r
+      JOIN
+      community comm ON r.post_id = comm.post_id
+      WHERE
+      r.user_unique_number = #{userUniqueNumber}  <!-- userUniqueNumber로 필터링 -->
+   </select>
+
+
+
+   <select id="getMaxCommentNumByPostId" resultType="int">
+      SELECT
+      COALESCE(MAX(post_comment_num), 0) FROM comment WHERE post_id =
+      #{postId};
+   </select>
+
+   <insert id="createComment"
+      parameterType="com.example.community.model.Comment">
+      INSERT INTO comment (post_id, comment_content,
+      user_unique_number, comment_name,
+      comment_date, post_comment_num)
+      VALUES (#{postId}, #{commentContent}, #{userUniqueNumber},
+      #{commentName}, NOW(), #{postCommentNum});
+   </insert>
+
+   <update id="updateComment"
+      parameterType="com.example.community.model.Comment">
+      UPDATE comment SET comment_content = #{commentContent},
+      comment_change_date = NOW()
+      WHERE post_comment_num = #{postCommentNum}
+      AND post_id = #{postId};
+   </update>
+
+   <delete id="deleteComment">
+      DELETE FROM comment WHERE post_id = #{postId} AND
+      post_comment_num = #{postCommentNum};
+   </delete>
+
+   <update id="updateCommentNumber">
+      UPDATE comment SET post_comment_num =
+      #{newPostCommentNum}
+      WHERE post_comment_num = #{oldPostCommentNum} AND
+      post_id = #{postId};
+   </update>
+
+
+   <select id="getCommentsByPostIdAndGreaterThanCommentNum"
+      resultType="com.example.community.model.Comment">
+      SELECT * FROM comment WHERE post_id = #{postId} AND
+      post_comment_num > #{postCommentNum} ORDER BY post_comment_num ASC;
+   </select>
+
+   <!-- 대댓글 관련 쿼리 -->
+   <select id="getRepliesByCommentId"
+      resultType="com.example.community.model.Reply">
+      SELECT * FROM reply WHERE post_id = #{postId} AND
+      post_comment_num = #{postCommentNum} ORDER BY reply_id ASC;
+   </select>
+
+   <!-- 특정 게시물의 특정 댓글의 특정 답글 조회 -->
+   <select id="getReplyById"
+      resultType="com.example.community.model.Reply">
+      SELECT * FROM reply
+      WHERE post_id = #{postId}
+      AND
+      post_comment_num = #{postCommentNum}
+      AND reply_id = #{replyId}
+   </select>
+
+   <select id="getMaxReplyIdByPostIdAndCommentNum" resultType="int">
+      SELECT COALESCE(MAX(reply_id), 0) FROM reply WHERE post_id = #{postId}
+      AND post_comment_num = #{postCommentNum};
+   </select>
+
+   <insert id="createReply"
+      parameterType="com.example.community.model.Reply">
+      INSERT INTO reply (post_id, post_comment_num, reply_id,
+      reply_content, user_unique_number, reply_name, reply_date)
+      VALUES
+      (#{postId}, #{postCommentNum}, #{replyId},
+      #{replyContent},
+      #{userUniqueNumber}, #{replyName}, NOW());
+   </insert>
+
+   <update id="updateReply">
+      UPDATE reply
+      SET reply_content = #{replyContent},
+      reply_change_date = NOW()
+      WHERE post_id = #{postId}
+      AND post_comment_num
+      = #{postCommentNum}
+      AND reply_id = #{replyId};
+   </update>
+
+   <delete id="deleteReply">
+      DELETE FROM reply WHERE post_id = #{postId} AND
+      post_comment_num = #{postCommentNum} AND reply_id = #{replyId};
+   </delete>
+
+   <update id="updateReplyNumber">
+      UPDATE reply
+      SET reply_id = #{newReplyId}
+      WHERE post_id
+      = #{postId}
+      AND post_comment_num = #{postCommentNum}
+      AND reply_id =
+      #{oldReplyId};
+   </update>
+
+   <select
+      id="getRepliesByPostIdAndCommentNumAndGreaterThanReplyId"
+      resultType="com.example.community.model.Reply">
+      SELECT * FROM reply WHERE post_id = #{postId} AND
+      post_comment_num = #{postCommentNum} AND reply_id > #{replyId} ORDER
+      BY
+      reply_id ASC;
+   </select>
+
+
+   <!-- 게시물 관리 -->
+   <resultMap id="SelectedFieldsResultMap"
+      type="com.example.community.dto.PostWithCommentCountDTO">
+      <result property="postId" column="post_id" />
+      <result property="postTitle" column="post_title" />
+      <result property="categoryName" column="category_name" />
+      <result property="commentCount" column="comment_count" />
+      <result property="communityDate" column="community_date"
+         javaType="java.time.LocalDateTime" jdbcType="TIMESTAMP" /> <!-- 날짜 필드 추가 -->
+      <result property="communityId" column="community_id" />
+      <result property="postView" column="post_view" />
+   </resultMap>
+
+   <select id="getAllPostsWithCommentCount"
+      resultMap="SelectedFieldsResultMap">
+      SELECT
+      c.post_id,
+      c.category_name,
+      c.post_title,
+      c.community_id,
+      c.post_view,
+      c.community_date,
+      ( <!-- 댓글과 대댓글 수를 합산 -->
+      SELECT COUNT(*)
+      FROM comment co
+      WHERE co.post_id = c.post_id
+      ) + ( <!-- 대댓글 
+         수 추가 -->
+      SELECT COUNT(*)
+      FROM reply r
+      WHERE r.post_id = c.post_id
+      ) AS
+      comment_count
+      FROM community c
+      ORDER BY c.community_date desc
+   </select>
+
+   <resultMap id="PostDetailResultMap"
+      type="com.example.community.dto.PostWithCommentCountDTO">
+      <result property="postId" column="post_id" />
+      <result property="categoryName" column="category_name" />
+      <result property="postContent" column="post_content" />
+      <result property="communityDate" column="community_date"
+         javaType="java.time.LocalDateTime" jdbcType="TIMESTAMP" />
+      <result property="postView" column="post_view" />
+      <result property="communityId" column="community_id" />
+   </resultMap>
+
+   <select id="getPostDetail" resultMap="PostDetailResultMap">
+      SELECT
+      c.category_name,
+      c.post_content,
+      c.community_date,
+      c.post_view
+      FROM community c
+      WHERE
+      c.post_id = #{postId}
+   </select>
+
+   <!-- 댓글 관리 -->
+   <resultMap id="CommentReplyResultMap"
+      type="com.example.community.dto.CommentReplyDTO">
+      <result property="id" column="id" />
+      <result property="postId" column="post_id" />
+      <result property="content" column="content" />
+      <result property="author" column="author" />
+      <result property="date" column="date" />
+      <result property="type" column="type" />
+   </resultMap>
+
+   <!-- 모든 댓글 답글 불러오기 -->
+   <select id="getAllCommentsAndReplies"
+      resultMap="CommentReplyResultMap">
+      SELECT
+      c.post_comment_num,
+      c.post_id,
+      c.comment_content AS
+      content,
+      c.comment_name AS author,
+      c.comment_date AS date,
+      'comment' AS
+      type,
+      com.category_name AS categoryName,
+      null AS replyId
+      FROM comment c
+      JOIN community com ON c.post_id = com.post_id
+
+      UNION
+
+      SELECT
+      r.post_comment_num AS postCommentNum,
+      r.post_id,
+      r.reply_content AS
+      content,
+      r.reply_name AS author,
+      r.reply_date AS
+      date,
+      'reply' AS type,
+      com.category_name AS
+      categoryName,
+      r.reply_id
+      FROM reply r
+      JOIN
+      community
+      com ON r.post_id = com.post_id
+   </select>
+
+
+   <!-- 관리자용 문의 목록 조회 -->
+   <select id="getAdminAllQuestions"
+      resultType="com.example.community.dto.QuestionDTO">
+      SELECT question_title, question_id, question_date,
+      question_answer,question_num
+      FROM question
+      ORDER BY question_date DESC
+   </select>
+   <select id="deleteAdminComment"
+      resultType="com.example.community.dto.QuestionDTO">
+      DELETE FROM comment WHERE post_id = #{postId} AND
+      post_comment_num = #{postCommentNum}
+   </select>
+
+   <select id="getUserPostAndCommentStats" parameterType="String"
+      resultType="com.example.community.dto.PostCommentStatsDto">
+      SELECT
+      (SELECT COUNT(*) FROM community WHERE
+      user_unique_number = #{userUniqueNumber})
+      AS postCount,
+      (SELECT COUNT(*)
+      FROM comment WHERE user_unique_number =
+      #{userUniqueNumber}) +
+      (SELECT
+      COUNT(*) FROM reply WHERE user_unique_number = #{userUniqueNumber})
+      AS
+      commentCount
+   </select>
+    <!-- 특정게시물의 댓글, 대댓글 총 갯수 -->
+   <select id="getPostCommentsAndReplies" resultType="Integer">
+      SELECT COUNT(*)
+      FROM (
+          SELECT c.post_comment_num, c.post_id, c.comment_content AS content, c.comment_name AS author, c.comment_date AS date, 'comment' AS type, com.category_name AS categoryName, null AS replyId
+          FROM comment c
+          JOIN community com ON c.post_id = com.post_id
+          WHERE c.post_id = #{postId}
+      
+          UNION ALL
+      
+          SELECT r.post_comment_num AS postCommentNum, r.post_id, r.reply_content AS content, r.reply_name AS author, r.reply_date AS date, 'reply' AS type, com.category_name AS categoryName, r.reply_id
+          FROM reply r
+          JOIN community com ON r.post_id = com.post_id
+          WHERE r.post_id = #{postId}
+      ) AS combined_results;
+    </select>    
+</mapper>
