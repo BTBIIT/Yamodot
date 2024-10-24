@@ -57,7 +57,7 @@
 - **설명**:  웹 배포를 위한 리눅스 환경 설정 및 우분투를 통한 웹 배포
 - **기능**: 웹 서버 배포
 - **기술 스택**: WSL, Ubuntu, PowerShell, NGINX
-- **프로젝트 링크**: [서버 배포](https://github.com/username/frontend-members)  
+- **프로젝트 링크**: [서버 배포](https://github.com/BTBIIT/Yamodot/tree/main/Server)  
 
 ---
 
