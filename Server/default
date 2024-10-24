@@ -1,0 +1,38 @@
+server {
+    listen 1443;
+    server_name 203.234.214.63; # 서버의 IP 주소 또는 도메인 이름
+
+    # React 정적 파일 서빙
+    root /home/rjfgu/Yamodot/baseball_react/frontend/build;
+    index index.html index.htm;
+
+    # Spring Boot API 요청 프록시
+    location /api/ {
+        proxy_pass http://127.0.0.1:8090/api/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    # Python 백엔드 API 요청 프록시
+    location /apipy/ {
+        proxy_pass http://127.0.0.1:5000/apipy/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    # React 정적 파일에 대한 캐싱 설정 (옵션)
+    location /static/ {
+        expires 1y;
+        add_header Cache-Control "public, max-age=31536000, immutable";
+    }
+
+    # 모든 다른 요청을 React의 index.html로 리디렉션 (SPA 지원)
+    location / {
+        try_files $uri /index.html;
+    }
+}
+
