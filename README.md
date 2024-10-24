@@ -68,10 +68,10 @@
 - **프로젝트 링크**: [백엔드](https://github.com/BTBIIT/Yamodot/tree/main/BackEnd)  
 ---
 
-### 📌 프론트엔드 커뮤니케이션 기능 (수정 중)
+### 📌 프론트엔드 커뮤니케이션 기능
 - **설명**: 실시간 메시지 송수신 기능 구현  
 - **기술 스택**: React, Flask, WebSocket  
-- **프로젝트 링크**: [프론트 커뮤니케이션](https://github.com/username/frontend-communication)  
+- **프로젝트 링크**: [프론트 커뮤니케이션](FrontEnd/src/components)  
 
 ---
 
