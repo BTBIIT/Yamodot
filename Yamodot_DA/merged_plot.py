@@ -34,12 +34,12 @@ CORS(app)
 # 반환값 : 접속 정보를 가진 객체
 def getDbConnection():
     connectionDb = pms.connect(
-        host= '203.234.214.63',
-        user='KH_PARK',
-        password='1q2w3e4r!',
-        db='yamodot_db',
-        charset='utf8mb4',
-        port= 1448
+        host= '203.234.214.63', # 호스트 주소 
+        user='KH_PARK', # 접속 계정 명
+        password='1q2w3e4r!', # 접속 비밀번호 명
+        db='yamodot_db', # 디비 명
+        charset='utf8mb4', # 포맷형식
+        port= 1448 #포트 번호
     )
     return connectionDb
 
