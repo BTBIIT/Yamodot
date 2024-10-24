@@ -75,10 +75,10 @@
 
 ---
 
-### 📌 프론트엔드 데이터 시각화 (수정 중)
+### 📌 프론트엔드 데이터 시각화
 - **설명**: Plotly를 활용한 데이터 분석 결과 시각화  
 - **기술 스택**: React, Plotly  
-- **프로젝트 링크**: [프론트 데이터 시각화](https://github.com/username/frontend-data-visualization)  
+- **프로젝트 링크**: [프론트 데이터 시각화](FrontEnd/src/components/record)  
 
 ---
 
