@@ -65,7 +65,7 @@
 - **설명**:  Spring Boot와 MariaDB를 활용한 회원 관리 시스템, 커뮤니티 시스템, 일정 등
 - **기능**: 웹 서버 배포
 - **기술 스택**: Java, Spring Boot, MyBatis, MariaDB
-- **프로젝트 링크**: [백엔드](https://github.com/nkp-95/144-3FinalProject)  
+- **프로젝트 링크**: [백엔드](https://github.com/BTBIIT/Yamodot/tree/main/BackEnd)  
 ---
 
 ### 📌 프론트엔드 커뮤니케이션 기능 (수정 중)
